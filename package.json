@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@storybook/addon-knobs": "5.2.5",
     "@wordpress/components": "8.3.2",
     "classnames": "2.2.6",
     "faker": "4.1.0",

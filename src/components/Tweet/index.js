@@ -1,9 +1,57 @@
 import React from 'react';
 import styled from 'styled-components';
-import Icon from '../Icon';
+import IconButton from '../IconButton';
 
 export default function Tweet(props) {
-	const { name, userName, id, avatar, title, content, timestamp } = props;
+	const {
+		name,
+		userName,
+		id,
+		avatar,
+		title,
+		likes,
+		content,
+		timestamp,
+		onClickLike,
+	} = props;
+
+	const isLoaded = avatar && name && userName && timestamp && content;
+
+	if (!isLoaded) {
+		return (
+			<TweetUI>
+				<Avatar></Avatar>
+				<Body>
+					<Header style={{ marginBottom: 8 }}>
+						<Skeleton style={{ width: '50%' }} />
+					</Header>
+					<Content>
+						<Skeleton
+							style={{
+								height: 12,
+								marginBottom: 5,
+								width: '80%',
+							}}
+						/>
+						<Skeleton
+							style={{
+								height: 12,
+								marginBottom: 5,
+								width: '68%',
+							}}
+						/>
+					</Content>
+					<Icons style={{ opacity: 0.3 }}>
+						<IconButton disabled icon="admin-comments" />
+						<IconButton disabled icon="controls-repeat" />
+						<IconButton disabled icon="heart" />
+						<IconButton disabled icon="share-alt2" />
+					</Icons>
+				</Body>
+			</TweetUI>
+		);
+	}
+
 	return (
 		<TweetUI>
 			<Avatar>
@@ -18,10 +66,13 @@ export default function Tweet(props) {
 				</Header>
 				<Content>{content}</Content>
 				<Icons>
-					<Icon icon="admin-comments" />
-					<Icon icon="controls-repeat" />
-					<Icon icon="heart" />
-					<Icon icon="share-alt2" />
+					<IconButton icon="admin-comments" />
+					<IconButton icon="controls-repeat" />
+					<LikeWrapper>
+						<IconButton icon="heart" onClick={onClickLike} />
+						<LikeLabel>{likes ? <>{likes}</> : null}</LikeLabel>
+					</LikeWrapper>
+					<IconButton icon="share-alt2" />
 				</Icons>
 			</Body>
 		</TweetUI>
@@ -37,6 +88,7 @@ const TweetUI = styled.div`
 `;
 
 const Avatar = styled.div`
+	background: #ddd;
 	width: 60px;
 	height: 60px;
 	border-radius: 50%;
@@ -74,4 +126,22 @@ const Content = styled.div`
 const Icons = styled.div`
 	display: flex;
 	justify-content: space-between;
+	margin-top: 10px;
+`;
+
+const Skeleton = styled.div`
+	background: #ddd;
+	border-radius: 4px;
+	height: 15px;
+`;
+
+const LikeWrapper = styled.div`
+	display: flex;
+	align-items: center;
+`;
+
+const LikeLabel = styled.div`
+	font-size: 12px;
+	width: 18px;
+	text-align: right;
 `;
