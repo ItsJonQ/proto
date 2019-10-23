@@ -10,6 +10,7 @@ const tweetSchema = new Schema(() => ({
 	userName: faker.internet.userName(),
 	avatar: faker.internet.avatar(),
 	name: faker.name.firstName(),
+	timestamp: '23m',
 }));
 
 export default {
@@ -20,10 +21,10 @@ export const _default = () => {
 	const tweets = tweetSchema.make(20);
 
 	return (
-		<>
+		<div style={{ maxWidth: 480 }}>
 			{tweets.map((tweet) => (
 				<Tweet {...tweet} key={tweet.id} />
 			))}
-		</>
+		</div>
 	);
 };
