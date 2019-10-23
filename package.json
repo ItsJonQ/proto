@@ -5,6 +5,8 @@
   "dependencies": {
     "@storybook/addon-knobs": "5.2.5",
     "@wordpress/components": "8.3.2",
+    "axios": "0.19.0",
+    "axios-mock-adapter": "1.17.0",
     "classnames": "2.2.6",
     "faker": "4.1.0",
     "faker-schema": "1.0.2",
@@ -18,8 +20,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "storybook": "STORYBOOK_ENV=storybook start-storybook -p 6006",
+    "build-storybook": "STORYBOOK_ENV=storybook build-storybook"
   },
   "eslintConfig": {
     "extends": "react-app"

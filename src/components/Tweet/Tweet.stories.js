@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { boolean } from '@storybook/addon-knobs';
 import faker from 'faker';
-import styled from 'styled-components';
 import { Schema } from 'faker-schema';
+import styled from 'styled-components';
 
+import { getTweets } from '../../api';
 import Tweet from './index';
 
 const tweetSchema = new Schema(() => ({
@@ -66,6 +67,10 @@ const LikeExample = (props) => {
 
 export const likeTest = () => {
 	const [tweet] = tweetSchema.make(1);
+
+	getTweets().then((response) => {
+		console.log(response);
+	});
 
 	return <LikeExample {...tweet} />;
 };
