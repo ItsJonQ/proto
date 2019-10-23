@@ -36,7 +36,7 @@ export const createApi = () => {
 		baseURL: 'https://jsonplaceholder.typicode.com/',
 	});
 
-	if (isDevelopment()) {
+	if (isStorybook()) {
 		createMockApi(apiInstance);
 	}
 
